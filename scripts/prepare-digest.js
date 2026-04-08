@@ -1,50 +1,30 @@
 #!/usr/bin/env node
 
-// ============================================================================
-// AI Technology Digest — Prepare Digest
-// ============================================================================
-// Gathers everything the LLM needs to produce a digest:
-// - Fetches the central feeds (tweets + podcasts)
-// - Fetches the latest prompts from GitHub
-// - Reads the user's config (language, delivery method)
-// - Outputs a single JSON blob to stdout
-//
-// The LLM's ONLY job is to read this JSON, remix the content, and output
-// the digest text. Everything else is handled here deterministically.
-//
-// Usage: node prepare-digest.js
-// Output: JSON to stdout
-// ============================================================================
-
-import { readFile, mkdir } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { homedir } from 'os';
+import { fileURLToPath } from 'url';
 
-// -- Constants ---------------------------------------------------------------
-
-const USER_DIR = join(homedir(), '.follow-builders');
+const USER_DIR = join(homedir(), '.follow-ustc');
 const CONFIG_PATH = join(USER_DIR, 'config.json');
 
-const FEED_X_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json';
-const FEED_PODCASTS_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json';
-const FEED_BLOGS_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-blogs.json';
+const FEED_OFFICIAL_URL = 'https://raw.githubusercontent.com/your-org/follow-USTC/main/feed-official.json';
+const FEED_TECH_URL = 'https://raw.githubusercontent.com/your-org/follow-USTC/main/feed-tech.json';
+const FEED_PAPERS_URL = 'https://raw.githubusercontent.com/your-org/follow-USTC/main/feed-papers.json';
 
-const PROMPTS_BASE = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/prompts';
-const FETCH_TIMEOUT_MS = 15000;
+const PROMPTS_BASE = 'https://raw.githubusercontent.com/your-org/follow-USTC/main/prompts';
 const PROMPT_FILES = [
-  'summarize-podcast.md',
-  'summarize-tweets.md',
-  'summarize-blogs.md',
+  'summarize-announcements.md',
+  'summarize-tech-news.md',
+  'summarize-papers.md',
   'digest-intro.md',
   'translate.md'
 ];
 
-// -- Fetch helpers -----------------------------------------------------------
-
 async function fetchJSON(url) {
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+    const res = await fetch(url);
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -54,7 +34,7 @@ async function fetchJSON(url) {
 
 async function fetchText(url) {
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+    const res = await fetch(url);
     if (!res.ok) return null;
     return res.text();
   } catch {
@@ -62,14 +42,11 @@ async function fetchText(url) {
   }
 }
 
-// -- Main --------------------------------------------------------------------
-
 async function main() {
   const errors = [];
 
-  // 1. Read user config
   let config = {
-    language: 'en',
+    language: 'zh',
     frequency: 'daily',
     delivery: { method: 'stdout' }
   };
@@ -81,47 +58,48 @@ async function main() {
     }
   }
 
-  // 2. Fetch all three feeds
-  const [feedX, feedPodcasts, feedBlogs] = await Promise.all([
-    fetchJSON(FEED_X_URL),
-    fetchJSON(FEED_PODCASTS_URL),
-    fetchJSON(FEED_BLOGS_URL)
+  const prompts = {};
+  const scriptDir = dirname(fileURLToPath(import.meta.url));
+  const localPromptsDir = join(scriptDir, '..', 'prompts');
+  const localFeedsDir = join(scriptDir, '..');
+  const userPromptsDir = join(USER_DIR, 'prompts');
+
+  let [feedOfficial, feedTech, feedPapers] = await Promise.all([
+    fetchJSON(FEED_OFFICIAL_URL),
+    fetchJSON(FEED_TECH_URL),
+    fetchJSON(FEED_PAPERS_URL)
   ]);
 
-  if (!feedX) errors.push('Could not fetch tweet feed');
-  if (!feedPodcasts) errors.push('Could not fetch podcast feed');
-  if (!feedBlogs) errors.push('Could not fetch blog feed');
+  if (!feedOfficial && existsSync(join(localFeedsDir, 'feed-official.json'))) {
+    feedOfficial = JSON.parse(await readFile(join(localFeedsDir, 'feed-official.json'), 'utf-8'));
+  }
+  if (!feedTech && existsSync(join(localFeedsDir, 'feed-tech.json'))) {
+    feedTech = JSON.parse(await readFile(join(localFeedsDir, 'feed-tech.json'), 'utf-8'));
+  }
+  if (!feedPapers && existsSync(join(localFeedsDir, 'feed-papers.json'))) {
+    feedPapers = JSON.parse(await readFile(join(localFeedsDir, 'feed-papers.json'), 'utf-8'));
+  }
 
-  // 3. Load prompts with priority: user custom > remote (GitHub) > local default
-  //
-  // If the user has a custom prompt at ~/.follow-builders/prompts/<file>,
-  // use that (they personalized it — don't overwrite with remote updates).
-  // Otherwise, fetch the latest from GitHub so they get central improvements.
-  // If GitHub is unreachable, fall back to the local copy shipped with the skill.
-  const prompts = {};
-  const scriptDir = decodeURIComponent(new URL('.', import.meta.url).pathname);
-  const localPromptsDir = join(scriptDir, '..', 'prompts');
-  const userPromptsDir = join(USER_DIR, 'prompts');
+  if (!feedOfficial) errors.push('Could not fetch official feed');
+  if (!feedTech) errors.push('Could not fetch tech feed');
+  if (!feedPapers) errors.push('Could not fetch paper feed');
 
   for (const filename of PROMPT_FILES) {
     const key = filename.replace('.md', '').replace(/-/g, '_');
     const userPath = join(userPromptsDir, filename);
     const localPath = join(localPromptsDir, filename);
 
-    // Priority 1: user's custom prompt (they personalized it)
     if (existsSync(userPath)) {
       prompts[key] = await readFile(userPath, 'utf-8');
       continue;
     }
 
-    // Priority 2: latest from GitHub (central updates)
     const remote = await fetchText(`${PROMPTS_BASE}/${filename}`);
     if (remote) {
       prompts[key] = remote;
       continue;
     }
 
-    // Priority 3: local copy shipped with the skill
     if (existsSync(localPath)) {
       prompts[key] = await readFile(localPath, 'utf-8');
     } else {
@@ -129,36 +107,24 @@ async function main() {
     }
   }
 
-  // 4. Build the output — everything the LLM needs in one blob
   const output = {
     status: 'ok',
     generatedAt: new Date().toISOString(),
-
-    // User preferences
     config: {
-      language: config.language || 'en',
+      language: config.language || 'zh',
       frequency: config.frequency || 'daily',
       delivery: config.delivery || { method: 'stdout' }
     },
-
-    // Content to remix
-    podcasts: feedPodcasts?.podcasts || [],
-    x: feedX?.x || [],
-    blogs: feedBlogs?.blogs || [],
-
-    // Stats for the LLM to reference
+    official: feedOfficial?.official || [],
+    tech: feedTech?.tech || [],
+    papers: feedPapers?.papers || [],
     stats: {
-      podcastEpisodes: feedPodcasts?.podcasts?.length || 0,
-      xSources: feedX?.x?.length || 0,
-      totalTweets: (feedX?.x || []).reduce((sum, a) => sum + a.tweets.length, 0),
-      blogPosts: feedBlogs?.blogs?.length || 0,
-      feedGeneratedAt: feedX?.generatedAt || feedPodcasts?.generatedAt || feedBlogs?.generatedAt || null
+      officialItems: feedOfficial?.official?.length || 0,
+      techItems: feedTech?.tech?.length || 0,
+      paperItems: feedPapers?.papers?.length || 0,
+      feedGeneratedAt: feedOfficial?.generatedAt || feedTech?.generatedAt || feedPapers?.generatedAt || null
     },
-
-    // Prompts — the LLM reads these and follows the instructions
     prompts,
-
-    // Non-fatal errors
     errors: errors.length > 0 ? errors : undefined
   };
 

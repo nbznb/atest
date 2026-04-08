@@ -1,83 +1,50 @@
 {
-  "podcasts": [
-    {
-      "name": "Latent Space",
-      "rssUrl": "https://pod2txt.vercel.app/api/feed?url=https://api.substack.com/feed/podcast/1084089.rss",
-      "url": "https://www.youtube.com/@LatentSpacePod"
-    },
-    {
-      "name": "Training Data",
-      "rssUrl": "https://feeds.megaphone.fm/trainingdata",
-      "url": "https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8"
-    },
-    {
-      "name": "No Priors",
-      "rssUrl": "https://feeds.megaphone.fm/nopriors",
-      "url": "https://www.youtube.com/@NoPriorsPodcast"
-    },
-    {
-      "name": "Unsupervised Learning",
-      "rssUrl": "https://feeds.simplecast.com/dOSE_bdP",
-      "url": "https://www.youtube.com/@RedpointAI"
-    },
-    {
-      "name": "The MAD Podcast with Matt Turck",
-      "rssUrl": "https://anchor.fm/s/f2ee4948/podcast/rss",
-      "url": "https://www.youtube.com/@DataDrivenNYC/videos"
-    },
-    {
-      "name": "AI & I by Every",
-      "rssUrl": "https://anchor.fm/s/ed1f5584/podcast/rss",
-      "url": "https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL"
-    }
-  ],
-  "blogs": [
-    {
-      "name": "Anthropic Engineering",
-      "type": "scrape",
-      "indexUrl": "https://www.anthropic.com/engineering",
-      "articleBaseUrl": "https://www.anthropic.com/engineering/",
-      "fetchMethod": "http"
-    },
-    {
-      "name": "Claude Blog",
-      "type": "scrape",
-      "indexUrl": "https://claude.com/blog",
-      "articleBaseUrl": "https://claude.com/blog/",
-      "fetchMethod": "http"
-    },
-    {
-      "name": "USTC Teaching Notices",
-      "type": "scrape",
-      "indexUrl": "https://www.teach.ustc.edu.cn/",
-      "articleBaseUrl": "https://www.teach.ustc.edu.cn/",
-      "fetchMethod": "http"
-    },
-    {
-      "name": "USTC Announcements",
-      "type": "scrape",
-      "indexUrl": "https://www.ustc.edu.cn/tzgg.htm",
-      "articleBaseUrl": "https://www.ustc.edu.cn/",
-      "fetchMethod": "http"
-    },
+  "official": [
     {
       "name": "USTC News",
+      "category": "official",
+      "type": "rss",
+      "feedUrl": "https://news.ustc.edu.cn/feed",
+      "siteUrl": "https://news.ustc.edu.cn",
+      "lookbackHours": 120,
+      "maxItems": 8,
+      "contentMode": "summary"
+    },
+    {
+      "name": "USTC Academic Affairs",
+      "category": "official",
       "type": "scrape",
-      "indexUrl": "https://news.ustc.edu.cn/",
-      "articleBaseUrl": "https://news.ustc.edu.cn/",
-      "fetchMethod": "http"
+      "indexUrl": "https://www.teach.ustc.edu.cn",
+      "siteUrl": "https://www.teach.ustc.edu.cn",
+      "listParser": "teach_home_links",
+      "articleParser": "generic_article",
+      "lookbackHours": 168,
+      "maxItems": 8,
+      "contentMode": "article"
     }
   ],
-  "x_sources": [
-    { "name": "OpenAI", "handle": "OpenAI" },
-    { "name": "Anthropic", "handle": "AnthropicAI" },
-    { "name": "Claude", "handle": "claudeai" },
-    { "name": "Google DeepMind", "handle": "GoogleDeepMind" },
-    { "name": "Google Labs", "handle": "GoogleLabs" },
-    { "name": "GitHub", "handle": "github" },
-    { "name": "Hugging Face", "handle": "huggingface" },
-    { "name": "Microsoft", "handle": "Microsoft" },
-    { "name": "Cloudflare", "handle": "Cloudflare" },
-    { "name": "Vercel", "handle": "vercel" }
+  "tech": [
+    {
+      "name": "MIT Technology Review",
+      "category": "tech",
+      "type": "rss",
+      "feedUrl": "https://www.technologyreview.com/feed/",
+      "siteUrl": "https://www.technologyreview.com",
+      "lookbackHours": 72,
+      "maxItems": 6,
+      "contentMode": "summary"
+    }
+  ],
+  "papers": [
+    {
+      "name": "arXiv AI",
+      "category": "papers",
+      "type": "rss",
+      "feedUrl": "https://rss.arxiv.org/rss/cs.AI",
+      "siteUrl": "https://arxiv.org/list/cs.AI/recent",
+      "lookbackHours": 168,
+      "maxItems": 6,
+      "contentMode": "summary"
+    }
   ]
 }

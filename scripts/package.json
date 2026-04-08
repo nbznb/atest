@@ -1,7 +1,7 @@
 {
-  "name": "follow-builders-scripts",
+  "name": "follow-ustc-scripts",
   "version": "1.0.0",
-  "description": "Scripts for the AI Technology Digest skill — feed generation, digest preparation, delivery",
+  "description": "Scripts for Follow USTC skill — feed generation, digest preparation, delivery",
   "type": "module",
   "scripts": {
     "generate-feed": "node generate-feed.js",
