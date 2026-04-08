@@ -9,6 +9,7 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const STATE_PATH = join(SCRIPT_DIR, '..', 'state-feed.json');
 const SOURCES_PATH = join(SCRIPT_DIR, '..', 'config', 'default-sources.json');
 const DEFAULT_LOOKBACK_HOURS = 168;
+const USER_AGENT = 'FollowUSTC/1.0 (digest aggregator)';
 
 async function loadState() {
   if (!existsSync(STATE_PATH)) {
@@ -35,7 +36,7 @@ async function loadSources() {
 }
 
 function decodeHtml(text) {
-  return text
+  return String(text || '')
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
@@ -43,6 +44,19 @@ function decodeHtml(text) {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&nbsp;/g, ' ')
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, num) => String.fromCodePoint(parseInt(num, 10)))
+    .trim();
+}
+
+function stripTags(html) {
+  return decodeHtml(String(html || ''))
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[\u200b\ufeff]/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -61,7 +75,7 @@ function parseRssFeed(xml) {
     const url = linkMatch ? decodeHtml(linkMatch[1]) : null;
     const guid = guidMatch ? decodeHtml(guidMatch[1]) : url || title;
     const publishedAt = pubDateMatch ? new Date(decodeHtml(pubDateMatch[1])).toISOString() : null;
-    const summary = descMatch ? decodeHtml(descMatch[1]).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+    const summary = descMatch ? stripTags(descMatch[1]) : '';
     if (url || guid) {
       items.push({ title, url, guid, publishedAt, summary });
     }
@@ -84,7 +98,7 @@ function parseAtomFeed(xml) {
     const url = linkMatch ? decodeHtml(linkMatch[1]) : null;
     const guid = idMatch ? decodeHtml(idMatch[1]) : url || title;
     const publishedAt = updatedMatch ? new Date(decodeHtml(updatedMatch[1])).toISOString() : null;
-    const summary = summaryMatch ? decodeHtml(summaryMatch[1]).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+    const summary = summaryMatch ? stripTags(summaryMatch[1]) : '';
     if (url || guid) {
       entries.push({ title, url, guid, publishedAt, summary });
     }
@@ -100,7 +114,7 @@ function withinLookback(item, hours) {
 
 async function fetchFeedItems(source, state) {
   const res = await fetch(source.feedUrl, {
-    headers: { 'User-Agent': 'FollowUSTC/1.0 (digest aggregator)' }
+    headers: { 'User-Agent': USER_AGENT }
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const xml = await res.text();
@@ -116,7 +130,7 @@ async function fetchFeedItems(source, state) {
     selected.push({
       source: source.category,
       sourceName: source.name,
-      title: item.title,
+      title: cleanTitle(item.title),
       url: item.url,
       publishedAt: item.publishedAt,
       summary: item.summary
@@ -135,89 +149,256 @@ function absolutizeUrl(baseUrl, maybeRelative) {
   }
 }
 
-function parseTeachHomeLinks(html, source) {
+function compilePattern(pattern) {
+  if (!pattern) return null;
+  try {
+    return new RegExp(pattern, 'i');
+  } catch {
+    return null;
+  }
+}
+
+function cleanTitle(title) {
+  return stripTags(title)
+    .replace(/\s*[:：|-]\s*中国科学技术大学教务处$/i, '')
+    .replace(/\s*[-|—]\s*中国科大新闻网$/i, '')
+    .replace(/\s*[-|—]\s*中国科学技术大学新闻网$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function normalizeDateString(value) {
+  if (!value) return null;
+  const match = String(value).match(/(20\d{2})[-/.年](\d{1,2})[-/.月](\d{1,2})/);
+  if (!match) return null;
+  const [, year, month, day] = match;
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
+function extractDate(text) {
+  return normalizeDateString(text);
+}
+
+function extractPreferredDate(html, regexes) {
+  for (const regex of regexes) {
+    const match = html.match(regex);
+    if (match?.[1]) {
+      const normalized = normalizeDateString(match[1]);
+      if (normalized) return normalized;
+    }
+  }
+  return null;
+}
+
+function isLowValueTitle(title) {
+  return /联系方式|办公地点|常见问题|工作手册|报修|入口|下载|登录|服务指南|平台说明|系统说明|搜索|首页|上一页|下一页|专题|附件/i.test(title);
+}
+
+function isLikelyNoise(content) {
+  return /搜索热点|友情链接|版权所有|上一篇|下一篇|微信扫一扫|投稿|English|主站|通知新闻|服务指南/.test(content);
+}
+
+function passesSourceFilters(item, source) {
+  const allowPattern = compilePattern(source.urlAllowPattern);
+  const denyPattern = compilePattern(source.urlDenyPattern);
+  const url = item.url || '';
+  const title = cleanTitle(item.title || '');
+  if (!url || !title) return false;
+  if (allowPattern && !allowPattern.test(url)) return false;
+  if (denyPattern && denyPattern.test(url)) return false;
+  if (title.length < 6) return false;
+  if (isLowValueTitle(title)) return false;
+  return true;
+}
+
+function dedupeCandidates(items) {
+  const seen = new Set();
+  const deduped = [];
+  for (const item of items) {
+    const key = item.url || item.guid || item.title;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(item);
+  }
+  return deduped;
+}
+
+function parseTeachNoticeLinks(html, source) {
   const items = [];
   const regex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
   let match;
-  const seen = new Set();
   while ((match = regex.exec(html)) !== null) {
     const url = absolutizeUrl(source.siteUrl || source.indexUrl, decodeHtml(match[1]));
-    const title = decodeHtml(match[2]).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    if (!title || title.length < 8) continue;
-    if (!/通知|公告|教务|选课|考试|培养|课程|报名|学籍|教学/.test(title)) continue;
-    if (seen.has(url)) continue;
-    seen.add(url);
-    items.push({ title, url, guid: url, publishedAt: null, summary: '' });
-    if (items.length >= (source.maxItems || 8) * 2) break;
+    const title = cleanTitle(match[2]);
+    const nearby = html.slice(Math.max(0, match.index - 240), Math.min(html.length, match.index + 240));
+    const publishedAt = extractDate(stripTags(nearby));
+    items.push({ title, url, guid: url, publishedAt, summary: '' });
   }
-  return items;
+  return dedupeCandidates(items).filter(item => passesSourceFilters(item, source)).slice(0, (source.maxItems || 8) * 5);
 }
 
-function extractGenericArticle(html) {
-  const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
-  const title = titleMatch ? decodeHtml(titleMatch[1]) : 'Untitled';
-  const publishedAtMatch = html.match(/(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/);
-  const publishedAt = publishedAtMatch ? publishedAtMatch[1] : null;
-  let content = html
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
+function parseUstcNewsLinks(html, source) {
+  const items = [];
+  const regex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    const rawUrl = decodeHtml(match[1]);
+    const url = absolutizeUrl(source.siteUrl || source.indexUrl, rawUrl);
+    const title = cleanTitle(match[2]);
+    const nearby = html.slice(Math.max(0, match.index - 320), Math.min(html.length, match.index + 320));
+    const publishedAt = extractDate(stripTags(nearby));
+    items.push({ title, url, guid: url, publishedAt, summary: '' });
+  }
+  return dedupeCandidates(items)
+    .filter(item => passesSourceFilters(item, source))
+    .filter(item => /中国科大|中国科学技术大学|实验室|团队|学院|学生|教授|研究|论坛|会议|成果|获|举办|开展|发布/.test(item.title))
+    .slice(0, (source.maxItems || 8) * 5);
+}
+
+function extractFirst(html, regexes) {
+  for (const regex of regexes) {
+    const match = html.match(regex);
+    if (match?.[1]) return match[1];
+  }
+  return '';
+}
+
+function extractGenericArticle(html, source) {
+  const title = cleanTitle(extractFirst(html, [
+    /<meta[^>]+property="og:title"[^>]+content="([^"]+)"/i,
+    /<title>([\s\S]*?)<\/title>/i,
+    /<h1[^>]*>([\s\S]*?)<\/h1>/i
+  ])) || 'Untitled';
+
+  const publishedAt = source.siteUrl?.includes('teach.ustc.edu.cn')
+    ? extractPreferredDate(html, [
+      /<div[^>]+class="[^"]*post-meta-print[^"]*"[^>]*>[\s\S]*?(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/i,
+      /<i[^>]+fa-clock-o[^>]*><\/i>\s*(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/i,
+      /<time[^>]*>([\s\S]*?)<\/time>/i
+    ])
+    : source.siteUrl?.includes('news.ustc.edu.cn')
+      ? extractPreferredDate(html, [
+        /(?:发布时间|日期)[：:\s]*<[^>]*>(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/i,
+        /(?:发布时间|日期)[：:\s]*(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/i,
+        /<time[^>]*>([\s\S]*?)<\/time>/i
+      ])
+      : extractPreferredDate(html, [
+        /<time[^>]*>([\s\S]*?)<\/time>/i,
+        /class="[^"]*(?:date|time|post-meta)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i,
+        /发布时间[：:\s]*<[^>]*>([\s\S]*?)<\/[^>]+>/i,
+        /发布时间[：:\s]*([^<\n]+)/i,
+        /(20\d{2}[-/.年]\d{1,2}[-/.月]\d{1,2})/
+      ]);
+
+  let contentHtml = extractFirst(html, [
+    /<div[^>]+class="[^"]*v_news_content[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+    /<article[^>]*>([\s\S]*?)<\/article>/i,
+    /<div[^>]+class="[^"]*(?:entry-content|post-content|article-content|content-main|news-content)[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+    /<div[^>]+id="[^"]*(?:content|vsb_content)[^"]*"[^>]*>([\s\S]*?)<\/div>/i
+  ]);
+
+  if (!contentHtml) {
+    contentHtml = html;
+  }
+
+  const content = stripTags(contentHtml)
+    .replace(/上一篇.*$/i, ' ')
+    .replace(/下一篇.*$/i, ' ')
+    .replace(/责任编辑.*$/i, ' ')
+    .replace(/打印\s+关闭.*$/i, ' ')
     .trim();
-  if (content.length > 4000) content = content.slice(0, 4000);
-  return { title, publishedAt, content };
+
+  return { title, publishedAt, content, sourceName: source.name };
+}
+
+function isHighValueArticle(article, source) {
+  if (!article.title || article.title.length < 6) return false;
+  if (isLowValueTitle(article.title)) return false;
+  if (!article.content || article.content.length < 80) return false;
+  if (isLikelyNoise(article.content.slice(0, 200))) return false;
+  if (article.content.replace(/\s+/g, '').startsWith(article.title.replace(/\s+/g, '')) && article.content.length < 120) return false;
+  if (source.category === 'official' && !article.publishedAt && article.content.length < 150) return false;
+  return true;
+}
+
+function scoreArticle(article) {
+  let score = 0;
+  if (article.publishedAt) score += 5;
+  score += Math.min(article.content.length, 1200) / 100;
+  if (/通知|公告|报名|答辩|选课|考试|申请|公示|课程|教学/.test(article.title)) score += 3;
+  if (/中国科大|中国科学技术大学|教授|学生|团队|学院|研究|成果|论坛|会议|举办|发布/.test(article.title)) score += 2;
+  return score;
 }
 
 async function fetchScrapeItems(source, state) {
   const res = await fetch(source.indexUrl, {
-    headers: { 'User-Agent': 'FollowUSTC/1.0 (digest aggregator)' }
+    headers: { 'User-Agent': USER_AGENT }
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const html = await res.text();
 
   let candidates = [];
-  if (source.listParser === 'teach_home_links') {
-    candidates = parseTeachHomeLinks(html, source);
+  if (source.listParser === 'teach_notice_links') {
+    candidates = parseTeachNoticeLinks(html, source);
+  } else if (source.listParser === 'ustc_news_links') {
+    candidates = parseUstcNewsLinks(html, source);
   }
 
-  const results = [];
+  const evaluated = [];
   for (const item of candidates) {
     const uniqueId = item.guid || item.url || item.title;
     if (!uniqueId || state.seenItems[uniqueId]) continue;
 
-    let summary = item.summary || '';
-    let publishedAt = item.publishedAt || null;
-    let title = item.title;
+    let article = {
+      title: cleanTitle(item.title),
+      publishedAt: item.publishedAt || null,
+      content: item.summary || ''
+    };
 
     if (source.contentMode === 'article' && item.url) {
       try {
         const articleRes = await fetch(item.url, {
-          headers: { 'User-Agent': 'FollowUSTC/1.0 (digest aggregator)' }
+          headers: { 'User-Agent': USER_AGENT }
         });
         if (articleRes.ok) {
           const articleHtml = await articleRes.text();
-          const article = extractGenericArticle(articleHtml);
-          title = article.title || title;
-          publishedAt = publishedAt || article.publishedAt || null;
-          summary = article.content || summary;
+          article = extractGenericArticle(articleHtml, source);
+          if (!article.publishedAt) article.publishedAt = item.publishedAt || null;
         }
       } catch {
       }
     }
 
-    results.push({
-      source: source.category,
-      sourceName: source.name,
-      title,
-      url: item.url,
-      publishedAt,
-      summary
+    if (!isHighValueArticle(article, source)) continue;
+    if (!withinLookback({ publishedAt: article.publishedAt }, source.lookbackHours || DEFAULT_LOOKBACK_HOURS)) continue;
+
+    evaluated.push({
+      uniqueId,
+      score: scoreArticle(article),
+      item: {
+        source: source.category,
+        sourceName: source.name,
+        title: article.title || cleanTitle(item.title),
+        url: item.url,
+        publishedAt: article.publishedAt,
+        summary: article.content
+      }
     });
-    state.seenItems[uniqueId] = Date.now();
-    if (results.length >= (source.maxItems || 5)) break;
   }
 
-  return results;
+  evaluated.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    if (a.item.publishedAt && b.item.publishedAt) return new Date(b.item.publishedAt) - new Date(a.item.publishedAt);
+    if (a.item.publishedAt) return -1;
+    if (b.item.publishedAt) return 1;
+    return 0;
+  });
+
+  const selected = evaluated.slice(0, source.maxItems || 5);
+  for (const entry of selected) {
+    state.seenItems[entry.uniqueId] = Date.now();
+  }
+  return selected.map(entry => entry.item);
 }
 
 async function fetchCategoryContent(sources, state, errors) {
@@ -230,7 +411,7 @@ async function fetchCategoryContent(sources, state, errors) {
       } else if (source.type === 'scrape') {
         items = await fetchScrapeItems(source, state);
       }
-      results.push(...items);
+      results.push(...items.filter(item => withinLookback(item, source.lookbackHours || DEFAULT_LOOKBACK_HOURS)));
     } catch (err) {
       errors.push(`${source.category}: ${source.name}: ${err.message}`);
     }

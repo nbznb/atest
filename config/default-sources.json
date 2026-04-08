@@ -3,24 +3,30 @@
     {
       "name": "USTC News",
       "category": "official",
-      "type": "rss",
-      "feedUrl": "https://news.ustc.edu.cn/feed",
-      "siteUrl": "https://news.ustc.edu.cn",
-      "lookbackHours": 120,
+      "type": "scrape",
+      "indexUrl": "https://news.ustc.edu.cn/",
+      "siteUrl": "https://news.ustc.edu.cn/",
+      "listParser": "ustc_news_links",
+      "articleParser": "generic_article",
+      "lookbackHours": 168,
       "maxItems": 8,
-      "contentMode": "summary"
+      "contentMode": "article",
+      "urlAllowPattern": "info/\\d+/\\d+\\.htm$",
+      "urlDenyPattern": "(index\\.htm$|/ztxw\\.htm$|/xwbl\\.htm$|/djwh\\.htm$|/rcpy\\.htm$|/mtgz\\.htm$|/yxkd1/|/zgkdb/)"
     },
     {
       "name": "USTC Academic Affairs",
       "category": "official",
       "type": "scrape",
-      "indexUrl": "https://www.teach.ustc.edu.cn",
+      "indexUrl": "https://www.teach.ustc.edu.cn/category/notice/notice-teaching",
       "siteUrl": "https://www.teach.ustc.edu.cn",
-      "listParser": "teach_home_links",
+      "listParser": "teach_notice_links",
       "articleParser": "generic_article",
-      "lookbackHours": 168,
+      "lookbackHours": 720,
       "maxItems": 8,
-      "contentMode": "article"
+      "contentMode": "article",
+      "urlAllowPattern": "/notice/notice-teaching/\\d+\\.html$",
+      "urlDenyPattern": "(/category/|\\?attachment_id=|/service/|/download/|/wp-content/|fix\\.ustc\\.edu\\.cn|ctld\\.ustc\\.edu\\.cn)"
     }
   ],
   "tech": [
@@ -37,12 +43,12 @@
   ],
   "papers": [
     {
-      "name": "arXiv AI",
+      "name": "QbitAI",
       "category": "papers",
       "type": "rss",
-      "feedUrl": "https://rss.arxiv.org/rss/cs.AI",
-      "siteUrl": "https://arxiv.org/list/cs.AI/recent",
-      "lookbackHours": 168,
+      "feedUrl": "https://www.qbitai.com/feed",
+      "siteUrl": "https://www.qbitai.com",
+      "lookbackHours": 96,
       "maxItems": 6,
       "contentMode": "summary"
     }

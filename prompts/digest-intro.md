@@ -13,7 +13,7 @@ Then organize content in this order:
 1. USTC OFFICIAL
 2. ACADEMIC AFFAIRS / NOTICES
 3. TECH NEWS
-4. RESEARCH PAPERS
+4. AI NEWS / FRONTIER
 
 ## Rules
 

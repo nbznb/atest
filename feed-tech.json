@@ -1,48 +1,7 @@
 {
-  "generatedAt": "2026-04-08T07:56:53.676Z",
-  "tech": [
-    {
-      "source": "tech",
-      "sourceName": "MIT Technology Review",
-      "title": "Desalination plants in the Middle East are increasingly vulnerable",
-      "url": "https://www.technologyreview.com/2026/04/07/1135235/desalination-technology-water/",
-      "publishedAt": "2026-04-07T14:54:06.000Z",
-      "summary": "MIT Technology Review Explains: Let our writers untangle the complex, messy world of technology to help you understand what’s coming next. You can read more from the series here. As the conflict in Iran has escalated, a crucial resource is under fire: the desalination technology that supplies water across much of the region. In early&#8230;"
-    },
-    {
-      "source": "tech",
-      "sourceName": "MIT Technology Review",
-      "title": "Enabling agent-first process redesign",
-      "url": "https://www.technologyreview.com/2026/04/07/1134966/enabling-agent-first-process-redesign/",
-      "publishedAt": "2026-04-07T14:00:00.000Z",
-      "summary": "Unlike static, rules-based systems, AI agents can learn, adapt, and optimize processes dynamically. As they interact with data, systems, people, and other agents in real time, AI agents can execute entire workflows autonomously. But unlocking their potential requires redesigning processes around agents rather than bolting them onto fragmented legacy workflows using traditional optimization methods. Companies&#8230;"
-    },
-    {
-      "source": "tech",
-      "sourceName": "MIT Technology Review",
-      "title": "The Download: AI&#8217;s impact on jobs, and data centres in space",
-      "url": "https://www.technologyreview.com/2026/04/07/1135208/the-download-ai-impact-jobs-data-centres-space/",
-      "publishedAt": "2026-04-07T12:10:00.000Z",
-      "summary": "This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. The one piece of data that could&#160;actually shed&#160;light on your job and AI&#160; Within Silicon Valley’s orbit, an AI-fueled&#160;jobs apocalypse is spoken about as a given. Now even economists who have&#8230;"
-    },
-    {
-      "source": "tech",
-      "sourceName": "MIT Technology Review",
-      "title": "The one piece of data that could actually shed light on your job and AI",
-      "url": "https://www.technologyreview.com/2026/04/06/1135187/the-one-piece-of-data-that-could-actually-shed-light-on-your-job-and-ai/",
-      "publishedAt": "2026-04-06T16:33:35.000Z",
-      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Within Silicon Valley’s orbit, an AI-fueled jobs apocalypse is spoken about as a given. The mood is so grim that a societal impacts researcher at Anthropic, responding Wednesday to a call for&#8230;"
-    },
-    {
-      "source": "tech",
-      "sourceName": "MIT Technology Review",
-      "title": "AI is changing how small online sellers decide what to make",
-      "url": "https://www.technologyreview.com/2026/04/06/1135118/ai-online-seller-alibaba-accio/",
-      "publishedAt": "2026-04-06T11:00:00.000Z",
-      "summary": "For years Mike McClary sold the Guardian LTE Flashlight, a heavy-duty black model, online through his small outdoor brand. The product, designed for brightness and durability, became one of his most popular items ever. Even after he stopped offering it around 2017, customers kept sending him emails asking where they could buy it.&#160; When McClary&#8230;"
-    }
-  ],
+  "generatedAt": "2026-04-08T09:47:08.575Z",
+  "tech": [],
   "stats": {
-    "techItems": 5
+    "techItems": 0
   }
 }

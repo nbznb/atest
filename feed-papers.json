@@ -1,53 +1,53 @@
 {
-  "generatedAt": "2026-04-08T07:56:53.677Z",
+  "generatedAt": "2026-04-08T09:47:08.575Z",
   "papers": [
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "Pramana: Fine-Tuning Large Language Models for Epistemic Reasoning through Navya-Nyaya",
-      "url": "https://arxiv.org/abs/2604.04937",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.04937v1 Announce Type: new Abstract: Large language models produce fluent text but struggle with systematic reasoning, often hallucinating confident but unfounded claims. When Apple researchers added irrelevant context to mathematical problems, LLM performance degraded by 65% Apple Machine Learning Research, exposing brittle pattern-matching beneath apparent reasoning. This epistemic gap, the inability to ground claims in traceable evidence, limits AI reliability in domains requiring justification. We introduce Pramana, a novel approach that teaches LLMs explicit epistemological methodology by fine-tuning on Navya-Nyaya logic, a 2,500-year-old Indian reasoning framework. Unlike generic chain-of-thought prompting, Navya-Nyaya enforces structured 6-phase reasoning: SAMSHAYA (doubt analysis), PRAMANA (evidence source identification), PANCHA AVAYAVA (5-member syllogism with universal rules), TARKA (counterfactual verification), HETVABHASA (fallacy detection), and NIRNAYA (ascertainment distinguishing knowledge from hypothesis). This integration of logic and epistemology provides cognitive scaffolding absent from standard reasoning approaches. We fine-tune Llama 3.2-3B and DeepSeek-R1-Distill-Llama-8B on 55 Nyaya-structured logical problems (constraint satisfaction, Boolean SAT, multi-step deduction). Stage 1 achieves 100% semantic correctness on held-out evaluation despite only 40% strict format adherence revealing that models internalize reasoning content even when structural enforcement is imperfect. Ablation studies show format prompting and temperature critically affect performance, with optimal configurations differing by stage. We release all models, datasets, and training infrastructure on Hugging Face to enable further research on epistemic frameworks for AI reasoning."
+      "sourceName": "QbitAI",
+      "title": "SentiPulse携手人大高瓴：开源交互式3D数字人框架SentiAvatar，领跑行业主流模型",
+      "url": "https://www.qbitai.com/2026/04/397922.html",
+      "publishedAt": "2026-04-08T08:30:38.000Z",
+      "summary": ""
     },
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "Operational Noncommutativity in Sequential Metacognitive Judgments",
-      "url": "https://arxiv.org/abs/2604.04938",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.04938v1 Announce Type: new Abstract: Metacognition, understood as the monitoring and regulation of one's own cognitive processes, is inherently sequential: an agent evaluates an internal state, updates it, and may then re-evaluate under modified criteria. Order effects in cognition are well documented, yet it remains unclear whether such effects reflect classical state changes or reveal a deeper structural non-commutativity. We develop an operational framework that makes this distinction explicit. In our formulation, metacognitive evaluations are modeled as state-transforming operations acting on an internal state space with probabilistic readouts, thereby separating evaluation back-action from observable output. We show that order dependence prevents any faithful Boolean-commutative representation. We then address a stronger question: can observed order effects always be explained by enlarging the state space with classical latent variables? To formalize this issue, we introduce two assumptions, counterfactual definiteness and evaluation non-invasiveness, under which the existence of a joint distribution over all sequential readouts implies a family of testable constraints on pairwise sequential correlations. Violation of these constraints rules out any classical non-invasive account and certifies what we call genuine non-commutativity. We provide an explicit three-dimensional rotation model with fully worked numerical examples that exhibits such violations. We also outline a behavioral paradigm involving sequential confidence, error-likelihood, and feeling-of-knowing judgments following a perceptual decision, together with the corresponding empirical test. No claim is made regarding quantum physical substrates; the framework is purely operational and algebraic."
+      "sourceName": "QbitAI",
+      "title": "Nature Index特刊以复杂系统为理论基础的“天立学科大脑”",
+      "url": "https://www.qbitai.com/2026/04/397915.html",
+      "publishedAt": "2026-04-08T06:51:15.000Z",
+      "summary": "“经验教学”到“数据治学”"
     },
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "Proximity Measure of Information Object Features for Solving the Problem of Their Identification in Information Systems",
-      "url": "https://arxiv.org/abs/2604.04939",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.04939v1 Announce Type: new Abstract: The paper considers a new quantitative-qualitative proximity measure for the features of information objects, where data enters a common information resource from several sources independently. The goal is to determine the possibility of their relation to the same physical object (observation object). The proposed measure accounts for the possibility of differences in individual feature values - both quantitative and qualitative - caused by existing determination errors. To analyze the proximity of quantitative feature values, the author employs a probabilistic measure; for qualitative features, a measure of possibility is used. The paper demonstrates the feasibility of the proposed measure by checking its compliance with the axioms required of any measure. Unlike many known measures, the proposed approach does not require feature value transformation to ensure comparability. The work also proposes several variants of measures to determine the proximity of information objects (IO) based on a group of diverse features."
+      "sourceName": "QbitAI",
+      "title": "地瓜机器人再获1.5亿美元投资！B轮累计融资2.7亿美元",
+      "url": "https://www.qbitai.com/2026/04/397912.html",
+      "publishedAt": "2026-04-08T06:39:06.000Z",
+      "summary": "全面加速全球化业务布局"
     },
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "ReVEL: Multi-Turn Reflective LLM-Guided Heuristic Evolution via Structured Performance Feedback",
-      "url": "https://arxiv.org/abs/2604.04940",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.04940v1 Announce Type: new Abstract: Designing effective heuristics for NP-hard combinatorial optimization problems remains a challenging and expertise-intensive task. Existing applications of large language models (LLMs) primarily rely on one-shot code synthesis, yielding brittle heuristics that underutilize the models' capacity for iterative reasoning. We propose ReVEL: Multi-Turn Reflective LLM-Guided Heuristic Evolution via Structured Performance Feedback, a hybrid framework that embeds LLMs as interactive, multi-turn reasoners within an evolutionary algorithm (EA). The core of ReVEL lies in two mechanisms: (i) performance-profile grouping, which clusters candidate heuristics into behaviorally coherent groups to provide compact and informative feedback to the LLM; and (ii) multi-turn, feedback-driven reflection, through which the LLM analyzes group-level behaviors and generates targeted heuristic refinements. These refinements are selectively integrated and validated by an EA-based meta-controller that adaptively balances exploration and exploitation. Experiments on standard combinatorial optimization benchmarks show that ReVEL consistently produces heuristics that are more robust and diverse, achieving statistically significant improvements over strong baselines. Our results highlight multi-turn reasoning with structured grouping as a principled paradigm for automated heuristic design."
+      "sourceName": "QbitAI",
+      "title": "开源模型首超Opus4.6！智谱GLM-5.1登场，14小时后CUDA专家被冲了",
+      "url": "https://www.qbitai.com/2026/04/397898.html",
+      "publishedAt": "2026-04-08T06:29:23.000Z",
+      "summary": "八小时造了个Linux系统"
     },
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "Algebraic Structure Discovery for Real World Combinatorial Optimisation Problems: A General Framework from Abstract Algebra to Quotient Space Learning",
-      "url": "https://arxiv.org/abs/2604.04941",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.04941v1 Announce Type: new Abstract: Many combinatorial optimisation problems hide algebraic structures that, once exposed, shrink the search space and improve the chance of finding the global optimal solution. We present a general framework that (i) identifies algebraic structure, (ii) formalises operations, (iii) constructs quotient spaces that collapse redundant representations, and (iv) optimises directly over these reduced spaces. Across a broad family of rule-combination tasks (e.g., patient subgroup discovery and rule-based molecular screening), conjunctive rules form a monoid. Via a characteristic-vector encoding, we prove an isomorphism to the Boolean hypercube $\\{0,1\\}^n$ with bitwise OR, so logical AND in rules becomes bitwise OR in the encoding. This yields a principled quotient-space formulation that groups functionally equivalent rules and guides structure-aware search. On real clinical data and synthetic benchmarks, quotient-space-aware genetic algorithms recover the global optimum in 48% to 77% of runs versus 35% to 37% for standard approaches, while maintaining diversity across equivalence classes. These results show that exposing and exploiting algebraic structure offers a simple, general route to more efficient combinatorial optimisation."
+      "sourceName": "QbitAI",
+      "title": "国产免费2B开源语音模型征服《莽撞人》！复刻郭德纲最难贯口",
+      "url": "https://www.qbitai.com/2026/04/397881.html",
+      "publishedAt": "2026-04-08T06:10:06.000Z",
+      "summary": "刚融资数亿元的面壁又发新模型，让歪果仁直呼Amazing"
     },
     {
       "source": "papers",
-      "sourceName": "arXiv AI",
-      "title": "PaperOrchestra: A Multi-Agent Framework for Automated AI Research Paper Writing",
-      "url": "https://arxiv.org/abs/2604.05018",
-      "publishedAt": "2026-04-08T04:00:00.000Z",
-      "summary": "arXiv:2604.05018v1 Announce Type: new Abstract: Synthesizing unstructured research materials into manuscripts is an essential yet under-explored challenge in AI-driven scientific discovery. Existing autonomous writers are rigidly coupled to specific experimental pipelines, and produce superficial literature reviews. We introduce PaperOrchestra, a multi-agent framework for automated AI research paper writing. It flexibly transforms unconstrained pre-writing materials into submission-ready LaTeX manuscripts, including comprehensive literature synthesis and generated visuals, such as plots and conceptual diagrams. To evaluate performance, we present PaperWritingBench, the first standardized benchmark of reverse-engineered raw materials from 200 top-tier AI conference papers, alongside a comprehensive suite of automated evaluators. In side-by-side human evaluations, PaperOrchestra significantly outperforms autonomous baselines, achieving an absolute win rate margin of 50%-68% in literature review quality, and 14%-38% in overall manuscript quality."
+      "sourceName": "QbitAI",
+      "title": "Skill vs App：一场入口范式的争夺",
+      "url": "https://www.qbitai.com/2026/04/397799.html",
+      "publishedAt": "2026-04-08T04:12:58.000Z",
+      "summary": "是重构，而非杀死"
     }
   ],
   "stats": {
