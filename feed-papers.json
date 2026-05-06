@@ -1,10 +1,40 @@
 {
-  "generatedAt": "2026-05-05T08:10:50.997Z",
-  "papers": [],
+  "generatedAt": "2026-05-06T08:27:11.688Z",
+  "papers": [
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "首日10w+！跨维智能赋能合作伙伴，商业服务小站“五一”多城齐开",
+      "url": "https://www.qbitai.com/2026/05/413164.html",
+      "publishedAt": "2026-05-06T04:55:09.000Z",
+      "summary": ""
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "AI“翻译”养殖经验智慧养猪提质增效 ——讯飞和光科技用大模型为传统产业升级注入新动能",
+      "url": "https://www.qbitai.com/2026/05/413154.html",
+      "publishedAt": "2026-05-06T04:32:09.000Z",
+      "summary": ""
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "马斯克破大防了：私信求和遭拒，怒喷奥特曼Brockman「全美最恶人」",
+      "url": "https://www.qbitai.com/2026/05/413022.html",
+      "publishedAt": "2026-05-06T04:04:13.000Z",
+      "summary": "马斯克胜诉概率应声下降"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "刚刚，ChatGPT免费模型升级了：幻觉砍半/记忆更强/回答更简洁",
+      "url": "https://www.qbitai.com/2026/05/412995.html",
+      "publishedAt": "2026-05-06T00:22:35.000Z",
+      "summary": "奥特曼特别强调，如果你最近都只用深度思考模型了，不妨回来看看"
+    }
+  ],
   "stats": {
-    "paperItems": 0
-  },
-  "errors": [
-    "papers: QbitAI: fetch failed"
-  ]
+    "paperItems": 4
+  }
 }
