@@ -1,16 +1,32 @@
 {
-  "generatedAt": "2026-05-07T08:34:54.940Z",
+  "generatedAt": "2026-05-08T07:43:14.352Z",
   "tech": [
     {
       "source": "tech",
       "sourceName": "MIT Technology Review",
-      "title": "The Download: seafloor science and military chatbots",
-      "url": "https://www.technologyreview.com/2026/05/06/1136917/the-download-seafloor-science-military-ai-chatbots/",
-      "publishedAt": "2026-05-06T12:10:00.000Z",
-      "summary": "This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Inexpensive seafloor-hopping submersibles could stoke deep-sea science—and mining Last week, two oblong neon submersibles started to descend nearly 6,000 meters into the Pacific Ocean. Throughout the rest of May, they will…"
+      "title": "The Download: the tech reshaping IVF and the rise of balcony solar",
+      "url": "https://www.technologyreview.com/2026/05/07/1136956/the-download-ivf-tech-balcony-solar/",
+      "publishedAt": "2026-05-07T12:10:00.000Z",
+      "summary": "This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. What’s next for IVF IVF has brought millions of babies into the world over the last four decades. But the process can still be slow, painful, and expensive—and far from guaranteed…"
+    },
+    {
+      "source": "tech",
+      "sourceName": "MIT Technology Review",
+      "title": "The balcony solar boom is coming to the US",
+      "url": "https://www.technologyreview.com/2026/05/07/1136933/balcony-solar-boom/",
+      "publishedAt": "2026-05-07T10:00:00.000Z",
+      "summary": "Dozens of US states are considering legislation to allow people to install plug-in solar systems, often called balcony solar. These small arrays require little to no setup and could help cut emissions and power bills. Balcony solar is already popular in Europe, and proponents say that the systems could make solar power more accessible for…"
+    },
+    {
+      "source": "tech",
+      "sourceName": "MIT Technology Review",
+      "title": "What’s next for IVF",
+      "url": "https://www.technologyreview.com/2026/05/07/1136946/whats-next-for-ivf-ai-robot-pgt-gene-editing/",
+      "publishedAt": "2026-05-07T09:04:50.000Z",
+      "summary": "MIT Technology Review’s What’s Next series looks across industries, trends, and technologies to give you a first look at the future. You can read the rest of them here. Forty-eight years ago this July, Louise Joy Brown became the world’s first person born with the help of in vitro fertilization. Millions more IVF babies have entered…"
     }
   ],
   "stats": {
-    "techItems": 1
+    "techItems": 3
   }
 }
