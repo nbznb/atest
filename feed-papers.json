@@ -1,40 +1,56 @@
 {
-  "generatedAt": "2026-06-07T08:56:07.459Z",
+  "generatedAt": "2026-06-08T10:56:48.398Z",
   "papers": [
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "教你用AI一节课收17万，华尔街精英排着队付费",
-      "url": "https://www.qbitai.com/2026/06/431487.html",
-      "publishedAt": "2026-06-07T03:10:13.000Z",
-      "summary": "花旗美银都是客户"
+      "title": "高德发布ABot-Earth0.5：跨越2D蒸馏模式，以3D原生驱动高一致性场景生成",
+      "url": "https://www.qbitai.com/2026/06/432489.html",
+      "publishedAt": "2026-06-08T09:00:20.000Z",
+      "summary": "ABot-Earth0.5正式开放内测"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "5分钟AI长视频不翻车！国产开源框架杀到全球第一梯队",
-      "url": "https://www.qbitai.com/2026/06/431401.html",
-      "publishedAt": "2026-06-07T01:13:21.000Z",
-      "summary": "高一致性、低延迟、实时超分全梭哈"
+      "title": "难上热搜的高考数学，我拿ChatGPT和豆包PK了一把！",
+      "url": "https://www.qbitai.com/2026/06/432425.html",
+      "publishedAt": "2026-06-08T08:28:48.000Z",
+      "summary": "豆包硬刚ChatGPT"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "马斯克是SpaceX面子，她才是里子",
-      "url": "https://www.qbitai.com/2026/06/431371.html",
-      "publishedAt": "2026-06-06T10:14:54.000Z",
-      "summary": "造火箭的正在批量造巨富"
+      "title": "大模型看Coding，具身看Picking！原力灵机已抢先入局",
+      "url": "https://www.qbitai.com/2026/06/432417.html",
+      "publishedAt": "2026-06-08T06:30:23.000Z",
+      "summary": "轻视它就会错过整个时代"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "华为云发布Agentic AI系列新品 打造智能时代“硅基黑土地”",
-      "url": "https://www.qbitai.com/2026/06/431027.html",
-      "publishedAt": "2026-06-05T10:46:59.000Z",
-      "summary": ""
+      "title": "马斯克SpaceX路演PPT：60页，值1.77万亿美元",
+      "url": "https://www.qbitai.com/2026/06/432084.html",
+      "publishedAt": "2026-06-08T05:02:40.000Z",
+      "summary": "最值得看的不是火箭是AI"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "让矩阵归模拟，让逻辑归数字！这家中国团队重新定义了计算机",
+      "url": "https://www.qbitai.com/2026/06/432062.html",
+      "publishedAt": "2026-06-08T04:36:03.000Z",
+      "summary": "黄仁勋要算一万步，这家公司的芯片只需一步"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "高通点赞广汽埃安N60智驾大赛获亚军，文远知行WRD 3.0亮相高通峰会",
+      "url": "https://www.qbitai.com/2026/06/432055.html",
+      "publishedAt": "2026-06-08T03:17:35.000Z",
+      "summary": "文远知行携L2++ 一段式端到端方案WRD 3.0参展"
     }
   ],
   "stats": {
-    "paperItems": 4
+    "paperItems": 6
   }
 }
