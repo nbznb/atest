@@ -1,40 +1,56 @@
 {
-  "generatedAt": "2026-06-20T08:57:13.470Z",
+  "generatedAt": "2026-06-21T09:50:46.376Z",
   "papers": [
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "AIEC 2026 | 太初元碁分享国产 AI 算力实践 助力 Token 服务落地生根",
-      "url": "https://www.qbitai.com/2026/06/436740.html",
-      "publishedAt": "2026-06-18T09:45:11.000Z",
-      "summary": ""
+      "title": "2026年，1800个DeepSeek跟我一起守护艾泽拉斯",
+      "url": "https://www.qbitai.com/2026/06/437141.html",
+      "publishedAt": "2026-06-21T04:46:07.000Z",
+      "summary": "一个月只要340块"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "腾讯老兵+大厂00后新锐，码上飞想做的不只是AI Coding",
-      "url": "https://www.qbitai.com/2026/06/436674.html",
-      "publishedAt": "2026-06-18T09:39:35.000Z",
-      "summary": "已接入华为鸿蒙生态"
+      "title": "英伟达开始搞机器人自己研究机器人那套了…",
+      "url": "https://www.qbitai.com/2026/06/437041.html",
+      "publishedAt": "2026-06-20T12:06:20.000Z",
+      "summary": "为了让你烧token，英伟达已经卷到机器人身上了"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "ABot-Earth0.5登顶Hugging Face论文三榜第一，获国际图形学权威陈宝权好评",
-      "url": "https://www.qbitai.com/2026/06/436698.html",
-      "publishedAt": "2026-06-18T09:39:05.000Z",
-      "summary": "能够直接导入Unity、Unreal Engine等主流引擎进行交互开发"
+      "title": "陶哲轩12年前的预言，现在AI帮他兑现了",
+      "url": "https://www.qbitai.com/2026/06/437023.html",
+      "publishedAt": "2026-06-20T11:56:57.000Z",
+      "summary": "全球最聪明的人之一，成了AI最狂热的布道者"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "全员本科生！何恺明组新作：文生图，258M参数就够了",
-      "url": "https://www.qbitai.com/2026/06/436518.html",
-      "publishedAt": "2026-06-18T09:12:09.000Z",
-      "summary": "整篇论文一共六位作者。除了何恺明之外，其余五位都还是本科生。"
+      "title": "撸猫撸出SOTA！3个00后2个月，造出史上最快流式音视频社交模型",
+      "url": "https://www.qbitai.com/2026/06/436996.html",
+      "publishedAt": "2026-06-20T10:42:35.000Z",
+      "summary": "速度快7倍，成本只有Veo 3的1/2000"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "诺奖得主、AlphaFold之父投奔Anthropic！谷歌48小时连跑俩大将",
+      "url": "https://www.qbitai.com/2026/06/436980.html",
+      "publishedAt": "2026-06-20T09:42:18.000Z",
+      "summary": "Gemini 3.5 Pro呢？"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "Meta员工士气跌至20年谷底！内部直播当众开骂，CTO承认AI重组糟糕透顶",
+      "url": "https://www.qbitai.com/2026/06/436966.html",
+      "publishedAt": "2026-06-20T09:36:31.000Z",
+      "summary": "抢人最猛的Meta，似乎先从内部裂开了"
     }
   ],
   "stats": {
-    "paperItems": 4
+    "paperItems": 6
   }
 }
