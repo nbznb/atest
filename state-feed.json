@@ -1,18 +1,5 @@
 {
   "seenItems": {
-    "https://news.ustc.edu.cn/info/1055/95313.htm": 1781173512566,
-    "https://news.ustc.edu.cn/info/1056/95319.htm": 1781173512566,
-    "https://news.ustc.edu.cn/info/1056/95317.htm": 1781173512566,
-    "https://www.technologyreview.com/?p=1138502": 1781173518216,
-    "https://www.technologyreview.com/?p=1138506": 1781173518216,
-    "https://www.technologyreview.com/?p=1138789": 1781173518216,
-    "https://www.technologyreview.com/?p=1138739": 1781173518216,
-    "https://www.qbitai.com/?p=434571": 1781173520081,
-    "https://www.qbitai.com/?p=434558": 1781173520081,
-    "https://www.qbitai.com/?p=434317": 1781173520081,
-    "https://www.qbitai.com/?p=434316": 1781173520081,
-    "https://www.qbitai.com/?p=434326": 1781173520081,
-    "https://www.qbitai.com/?p=434298": 1781173520081,
     "https://news.ustc.edu.cn/info/1055/95315.htm": 1781259225335,
     "https://news.ustc.edu.cn/info/1056/95331.htm": 1781259225335,
     "https://news.ustc.edu.cn/info/1056/95335.htm": 1781259225335,
@@ -179,6 +166,20 @@
     "https://www.qbitai.com/?p=438365": 1782379331268,
     "https://www.qbitai.com/?p=438351": 1782379331268,
     "https://www.qbitai.com/?p=438336": 1782379331268,
-    "https://www.qbitai.com/?p=438297": 1782379331268
+    "https://www.qbitai.com/?p=438297": 1782379331268,
+    "https://news.ustc.edu.cn/info/1048/95486.htm": 1782466055043,
+    "https://news.ustc.edu.cn/info/1056/95499.htm": 1782466055043,
+    "https://news.ustc.edu.cn/info/1056/95498.htm": 1782466055043,
+    "https://www.technologyreview.com/?p=1139760": 1782466061326,
+    "https://www.technologyreview.com/?p=1137848": 1782466061326,
+    "https://www.technologyreview.com/?p=1139738": 1782466061326,
+    "https://www.technologyreview.com/?p=1139690": 1782466061326,
+    "https://www.technologyreview.com/?p=1139696": 1782466061326,
+    "https://www.qbitai.com/?p=438789": 1782466063004,
+    "https://www.qbitai.com/?p=438750": 1782466063004,
+    "https://www.qbitai.com/?p=438741": 1782466063004,
+    "https://www.qbitai.com/?p=438701": 1782466063004,
+    "https://www.qbitai.com/?p=438703": 1782466063004,
+    "https://www.qbitai.com/?p=438698": 1782466063004
   }
 }
