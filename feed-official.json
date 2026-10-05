@@ -1,7 +1,11 @@
 {
-  "generatedAt": "2026-10-04T11:52:07.551Z",
+  "generatedAt": "2026-10-05T13:46:37.451Z",
   "official": [],
   "stats": {
     "officialItems": 0
-  }
+  },
+  "errors": [
+    "official: USTC News: fetch failed",
+    "official: USTC Academic Affairs: fetch failed"
+  ]
 }
