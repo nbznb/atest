@@ -1,15 +1,5 @@
 {
   "seenItems": {
-    "https://news.ustc.edu.cn/info/1048/96452.htm": 1790600659052,
-    "https://news.ustc.edu.cn/info/1056/96444.htm": 1790600659052,
-    "https://news.ustc.edu.cn/info/1056/96455.htm": 1790600659052,
-    "https://www.technologyreview.com/?p=1145202": 1790600669758,
-    "https://www.technologyreview.com/?p=1145197": 1790600669758,
-    "https://www.qbitai.com/?p=498877": 1790600672618,
-    "https://www.qbitai.com/?p=498787": 1790600672618,
-    "https://www.qbitai.com/?p=498633": 1790600672618,
-    "https://www.qbitai.com/?p=498605": 1790600672618,
-    "https://www.qbitai.com/?p=498584": 1790600672618,
     "https://news.ustc.edu.cn/info/1047/96460.htm": 1790684079381,
     "https://news.ustc.edu.cn/info/1047/96463.htm": 1790684079381,
     "https://www.technologyreview.com/?p=1145183": 1790684081209,
@@ -125,6 +115,14 @@
     "https://www.qbitai.com/?p=502594": 1791720760992,
     "https://www.qbitai.com/?p=502584": 1791720760992,
     "https://www.qbitai.com/?p=502585": 1791720760992,
-    "https://www.qbitai.com/?p=502550": 1791720760992
+    "https://www.qbitai.com/?p=502550": 1791720760992,
+    "https://news.ustc.edu.cn/info/1056/96556.htm": 1791815706379,
+    "https://www.technologyreview.com/?p=1146376": 1791815716546,
+    "https://www.technologyreview.com/?p=1145760": 1791815716546,
+    "https://www.technologyreview.com/?p=1145745": 1791815716546,
+    "https://www.qbitai.com/?p=502654": 1791815717739,
+    "https://www.qbitai.com/?p=502649": 1791815717739,
+    "https://www.qbitai.com/?p=502544": 1791815717739,
+    "https://www.qbitai.com/?p=502541": 1791815717739
   }
 }
