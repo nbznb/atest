@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-10-25T10:51:21.204Z",
-  "papers": [
-    {
-      "source": "papers",
-      "sourceName": "QbitAI",
-      "title": "高德发布首个基于开放世界行为的全身基座模型λ0，推动机器人从“局部学习”迈向“全身动作对齐”",
-      "url": "https://www.qbitai.com/2026/10/504905.html",
-      "publishedAt": "2026-10-23T08:40:57.000Z",
-      "summary": "阿里巴巴集团旗下高德正式发布首个基于开放世界行为的全身基座模型λ0"
-    }
-  ],
+  "generatedAt": "2026-10-26T12:22:00.470Z",
+  "papers": [],
   "stats": {
-    "paperItems": 1
+    "paperItems": 0
   }
 }
