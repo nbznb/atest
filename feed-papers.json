@@ -1,56 +1,48 @@
 {
-  "generatedAt": "2026-11-06T13:49:20.418Z",
+  "generatedAt": "2026-11-07T12:33:01.338Z",
   "papers": [
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "为什么每个 Personal Agent 背后，都必须配备一台“云电脑”？",
-      "url": "https://www.qbitai.com/2026/11/508174.html",
-      "publishedAt": "2026-11-06T09:25:59.000Z",
-      "summary": "PPIO 沙箱，把“云电脑”做成开箱即用的 API"
+      "title": "抢跑DeepSeek！硅谷华人把下一代Agent Harness造出来了！？",
+      "url": "https://www.qbitai.com/2026/11/508264.html",
+      "publishedAt": "2026-11-07T05:01:17.000Z",
+      "summary": "苦单Session久矣，两大Agent玩家不谋而合。"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "阶跃终端 STEPX Neo 智能体手机亮相进博会高通展台，软硬模一体打造智能体新体验",
-      "url": "https://www.qbitai.com/2026/11/508170.html",
-      "publishedAt": "2026-11-06T09:21:51.000Z",
-      "summary": "阶跃终端旗下 STEPX Neo 智能体手机首次亮相"
+      "title": "AGENTS.MD，危险危险危险！！！",
+      "url": "https://www.qbitai.com/2026/11/508244.html",
+      "publishedAt": "2026-11-07T03:43:55.000Z",
+      "summary": "全新的电脑病毒"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "阿里巴巴发布《2026 AI向善行动报告》 AI数据中心可持续发展成年度亮点",
-      "url": "https://www.qbitai.com/2026/11/508165.html",
-      "publishedAt": "2026-11-06T09:19:00.000Z",
-      "summary": "11月5日，阿里巴巴发布《2026 AI向善行动报告》"
+      "title": "",
+      "url": "https://www.qbitai.com/2026/11/508236.html",
+      "publishedAt": "2026-11-07T03:31:44.000Z",
+      "summary": "中国版cosmos再交卷"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "DeepSeek带火稀疏计算，国产芯片公司加速突围：这家公司又融近10亿",
-      "url": "https://www.qbitai.com/2026/11/508155.html",
-      "publishedAt": "2026-11-06T07:00:29.000Z",
-      "summary": "Q3营收实现数倍增长"
+      "title": "Jeff Dean李飞飞最新对谈：全是RSI非共识",
+      "url": "https://www.qbitai.com/2026/11/508196.html",
+      "publishedAt": "2026-11-07T03:23:29.000Z",
+      "summary": "RSI不可能无限快"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "一边赛博修仙，一边卖家电！AI短剧开始冲双11业绩了？",
-      "url": "https://www.qbitai.com/2026/11/508118.html",
-      "publishedAt": "2026-11-06T06:54:17.000Z",
-      "summary": "挑战商业视频的高难度场景"
-    },
-    {
-      "source": "papers",
-      "sourceName": "QbitAI",
-      "title": "从RSI、Agent、Physical AI到整个系统栈，2026 奇点智能技术大会最新日程公布！",
-      "url": "https://www.qbitai.com/2026/11/508143.html",
-      "publishedAt": "2026-11-06T06:43:14.000Z",
-      "summary": "11 月 20—21 日，2026 奇点智能技术大会将在北京万达文华酒店举行。"
+      "title": "A\\三大内部模型曝光！领先Opus5.5三个月，RSI缩短80%实验时间",
+      "url": "https://www.qbitai.com/2026/11/508184.html",
+      "publishedAt": "2026-11-06T15:21:56.000Z",
+      "summary": "Dario刚喊减速…"
     }
   ],
   "stats": {
-    "paperItems": 6
+    "paperItems": 5
   }
 }
