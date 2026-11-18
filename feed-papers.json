@@ -1,40 +1,56 @@
 {
-  "generatedAt": "2026-11-17T15:35:06.436Z",
+  "generatedAt": "2026-11-18T15:12:15.717Z",
   "papers": [
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "龙芯、海光老兵集结，通研院孵化的AGI芯片公司浮出水面！半年连融数亿元",
-      "url": "https://www.qbitai.com/2026/11/510416.html",
-      "publishedAt": "2026-11-16T05:05:22.000Z",
-      "summary": "杨立昆、李飞飞都在追问的事，通芯智能想用一颗芯片来回答。"
+      "title": "Gemini新模型Neon箭在弦上，网友：遍历元素周期表？",
+      "url": "https://www.qbitai.com/2026/11/510922.html",
+      "publishedAt": "2026-11-18T09:41:55.000Z",
+      "summary": "氖人寻味！"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "没搞过一天研发的他，50岁以华为董事的身份退休了",
-      "url": "https://www.qbitai.com/2026/11/510404.html",
-      "publishedAt": "2026-11-16T03:54:30.000Z",
-      "summary": "50岁，以“华为董事”之名退休，又有几人？"
+      "title": "GPT-6.2难产！OpenAI怕了",
+      "url": "https://www.qbitai.com/2026/11/510914.html",
+      "publishedAt": "2026-11-18T07:53:29.000Z",
+      "summary": "OpenAI也终于活成了2022年谷歌的样子"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "今天截止！2026年度AI表彰，错过再等一年！",
-      "url": "https://www.qbitai.com/2026/11/510382.html",
-      "publishedAt": "2026-11-16T03:19:53.000Z",
-      "summary": "量子位在寻找“能干”的答案"
+      "title": "全球首个医疗健康AI独立评测与分析平台InclusionMed正式上线",
+      "url": "https://www.qbitai.com/2026/11/510916.html",
+      "publishedAt": "2026-11-18T07:24:50.000Z",
+      "summary": "近日，全球首个医疗健康 AI 独立评测与分析平台InclusionMed 正式上线"
     },
     {
       "source": "papers",
       "sourceName": "QbitAI",
-      "title": "提速2.48倍且画质不掉线，AI视频“降本增效”有了新解法",
-      "url": "https://www.qbitai.com/2026/11/510369.html",
-      "publishedAt": "2026-11-16T03:07:39.000Z",
-      "summary": "是石科技最新发布多模态模型服务"
+      "title": "思维链一作Jason Wei离职！怎么去Meta待一年都跑路",
+      "url": "https://www.qbitai.com/2026/11/510811.html",
+      "publishedAt": "2026-11-18T04:49:51.000Z",
+      "summary": "入职Meta刚满一年出头，竟然直接提桶跑路了！"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "英伟达AMD首次联手押注！Genesis完成A轮融资，估值超230亿",
+      "url": "https://www.qbitai.com/2026/11/510821.html",
+      "publishedAt": "2026-11-18T04:28:57.000Z",
+      "summary": "具身全栈玩家"
+    },
+    {
+      "source": "papers",
+      "sourceName": "QbitAI",
+      "title": "潜伏小红书48h：AI时代，顶尖技术人才都在聊什么？",
+      "url": "https://www.qbitai.com/2026/11/510737.html",
+      "publishedAt": "2026-11-18T02:49:23.000Z",
+      "summary": "小红书校招沙龙，一群技术高手认真对待年轻人的野心"
     }
   ],
   "stats": {
-    "paperItems": 4
+    "paperItems": 6
   }
 }
